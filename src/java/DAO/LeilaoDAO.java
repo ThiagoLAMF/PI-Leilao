@@ -63,6 +63,12 @@ public class LeilaoDAO {
                 listaLeilao.add(l);
             }
             con.close();
+            
+            for(Leilao l : listaLeilao)
+            {
+                l.setLances(LeilaoDAO.getLances(l.getId()));
+            }
+            
             return listaLeilao;
         }
         catch(Exception e)
@@ -112,21 +118,32 @@ public class LeilaoDAO {
     }
     
     public static boolean addLance(Lance l)
-    {
-        String query = "INSERT INTO TbLance(Lance_Leilao,Fk_Id_Usuario,Fk_Id_Leilao) VALUES(" + l.getPrecolance() + "," + l.getUsuario().getId() 
-                        + "," + l.getLeilao().getId() + ")";
-        
-        String queryUpdate = "UPDATE TbLeilao SET Valor_Lance = " + l.getPrecolance() +
+    {   
+        String queryUpdate = "UPDATE TbLeilao SET Valor_Lance = Valor_Lance + " + l.getPrecolance() +
                              " WHERE Pk_Id_Leilao = " + l.getLeilao().getId();
+       
+        String querySelect = "SELECT Valor_Lance FROM TbLeilao " + 
+                             "WHERE Pk_Id_Leilao = " + l.getLeilao().getId();
         
         try
         {
             Class.forName("com.mysql.jdbc.Driver");  
             Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/leilao","root","");  
   
+            // Update tbLeilao
             Statement stmt=con.createStatement();  
-            stmt.executeUpdate(query);  
             stmt.executeUpdate(queryUpdate);
+            
+            //Seleciona valor atual do leilao
+            Statement stmt2=con.createStatement();  
+            ResultSet rs2=stmt2.executeQuery(querySelect);
+            rs2.next();
+            float valorLeilao = rs2.getFloat("Valor_Lance");
+            
+            
+            String query = "INSERT INTO TbLance(Lance_Leilao,Fk_Id_Usuario,Fk_Id_Leilao) VALUES(" + valorLeilao + "," + l.getUsuario().getId() 
+                        + "," + l.getLeilao().getId() + ")";
+            stmt.executeUpdate(query);  
             return true;
         }
         catch(Exception e)

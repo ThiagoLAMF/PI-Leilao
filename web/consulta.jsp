@@ -32,8 +32,8 @@
             <tr>
                 <td>ID</td>
                 <td>DESC</td>
-                <td>LANCE MIN</td>
-                <td>VALOR LANCE</td>
+                <td>LANCE</td>
+                <td>VALOR T. LANCE</td>
                 <td>ENCERRADO</td>
                 <td>LANCES</td>
                 <td></td>
@@ -64,6 +64,9 @@
                             <input type="hidden" name="lanceMinimo" value="${item.lanceMinino}" />
                             <input type="submit" value="DAR LANCE" class="button2">
                             </form>
+                        </c:if>
+                        <c:if test = "${item.fgEncerrado == true}">
+                            ${item.getLastUser()}
                         </c:if>
                      </td>
                      <c:if test = "${usuario.admin == true}">

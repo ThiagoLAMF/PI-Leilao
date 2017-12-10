@@ -23,11 +23,11 @@
                     <td><input type="text" name="descricao"></td>
                 </tr>
                 <tr>
-                    <td>Lance Minimo:</td>
+                    <td>Valor Lance:</td>
                     <td><input type="text" name="lanceminimo"></td>
                 </tr>
                 <tr>
-                    <td>Valor do Lance:</td>
+                    <td>Valor Inicial:</td>
                     <td><input type="text" name="valorlance"></td>
                 </tr>
 

@@ -30,7 +30,7 @@ public class DarLanceCommand implements Command{
         
         lance.setLeilao(l);
         lance.setUsuario(u);
-        lance.setPrecolance(valorlance+lanceMinimo);
+        lance.setPrecolance(lanceMinimo);
         
         LeilaoController lc = new LeilaoController();
         

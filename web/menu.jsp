@@ -19,7 +19,8 @@
         <title>Menu</title>
     </head>
     <body>
-    <center>
+    <div class="center">
+        <h1>MENU</h1>
         <form name="menu" action="fc" method="POST">
             <input type="hidden" name="cmd" value="listar" />
             <input type="submit" value="CONSULTAR LEILÕES"  class="button2" style="width: 200px">
@@ -36,6 +37,6 @@
             <input type="hidden" name="cmd" value="efetuarLogout" />
             <input type="submit" value="LOGOUT"  class="button2" style="width: 200px">
         </form>
-    </center>
+    </div>
     </body>
 </html>

@@ -28,6 +28,11 @@ public class Leilao {
         return lanceMinino;
     }
 
+    public String getLastUser()
+    {
+        if(lances == null || lances.size()==0) return "";
+        else return lances.get(lances.size()-1).getUsuario().getNome();
+    }
     public void setLanceMinino(float lanceMinino) {
         this.lanceMinino = lanceMinino;
     }
